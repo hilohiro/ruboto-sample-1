@@ -15,3 +15,7 @@ Ruboto実装サンプルその1
 
 ### githubに登録
 
+### Activity追加
+
+    ruboto gen class Activity --name=PostActivity
+
