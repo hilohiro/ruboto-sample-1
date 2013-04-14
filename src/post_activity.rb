@@ -19,7 +19,7 @@ class PostActivity
         linear_layout :orientation => :vertical do
           text_view :text => 'URL', :id => 45, :width => :match_parent
           @url_edit = edit_text :id => 46, :width => :match_parent, :height => :wrap_content, :text => '',
-                                :input_type => InputType.TYPE_CLASS_TEXT | InputType::TYPE_TEXT_VARIATION_URI
+                                :input_type => InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_URI
           text_view :text => 'メッセージ', :id => 47, :width => :match_parent
           @edit_view = edit_text :id => 44, :width => :match_parent, :height => :wrap_content, :text => '',
                                  :ime_options => EditorInfo::IME_ACTION_SEND
@@ -36,6 +36,11 @@ class PostActivity
 
   def apply_to_label
     @text_view.text = @edit_view.text
+    # パッケージから指定しないとPostActivityのネームスペースで検索して見つけられない
+    # task = PostTask.new
+    task = Java::com.example.hilohiro.sample.ruboto1.PostTask.new
+    task.context = self
+    task.execute ''
   end
 
 end
